@@ -1,7 +1,8 @@
 import dogAPI from '../services/dogAPI';
+import { createAction } from 'promise-middleware-redux';
 
-export const GET_DOG = 'GET_DOG';
-export const getDog = () => ({
-  type: GET_DOG,
-  payload: dogAPI()
-});
+export const [
+  getDog,
+  GET_DOG,
+  PENDING_DOG,
+] = createAction('getDog', dogAPI);

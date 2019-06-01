@@ -1,14 +1,15 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { selectDog } from '../selectors/dogSelector';
+import { selectDog, selectDogPending } from '../selectors/dogSelector';
 import { getDog } from '../actions/dogActions';
 import Image from '../components/Image';
 
 class DogImage extends PureComponent {
   static propTypes = {
-    image: PropTypes.string.isRequired,
-    fetch: PropTypes.func.isRequired
+    img: PropTypes.string.isRequired,
+    fetch: PropTypes.func.isRequired,
+    loading: PropTypes.bool.isRequired
   }
 
   componentDidMount(){
@@ -16,12 +17,15 @@ class DogImage extends PureComponent {
   }
 
   render(){
-    return <Image img={this.props.image} />;
+    const { loading, img } = this.props;
+    if(loading) return <h1>Hold up, loading...</h1>;
+    return <Image img={img} />;
   }
 }
 
 const mapStateToProps = state => ({
-  image: selectDog(state)
+  img: selectDog(state),
+  loading: selectDogPending(state)
 });
 
 const mapDispatchToProps = dispatch => ({
