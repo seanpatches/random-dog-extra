@@ -1,11 +1,15 @@
 import { getDog, GET_DOG } from './dogActions';
 
+jest.mock('../services/dogAPI');
 
 describe('getDog actions', () => {
   it('makes a getDog action', () => {
-    expect(getDog(0, 'My Comment')).toEqual({
+    expect(getDog()).toEqual({
       type: GET_DOG,
-      payload: { postId: 0, comment: 'My Comment' }
+      payload: expect.any(Promise),
+      fulfilledType: 'getDog_FULFILLED',
+      pendingType: 'getDog_PENDING',
+      rejectedType: 'getDog_REJECTED',
     });
   });
 });
