@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Image component renders image comp 1`] = `
+<img
+  src="https://images.dog.ceo/breeds/shiba/shiba-6.jpg"
+/>
+`;
